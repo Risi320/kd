@@ -1,0 +1,20 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero {
+  min-height: 60vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+@media (max-width: 576px) {
+  .hero {
+    min-height: 50vh;
+  }
+}
