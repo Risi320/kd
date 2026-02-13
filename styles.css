@@ -18,3 +18,13 @@ body {
     min-height: 50vh;
   }
 }
+
+.room-link {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.room-link:hover {
+  text-decoration: underline;
+}

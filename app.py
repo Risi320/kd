@@ -175,16 +175,24 @@ def render_page(title: str, active: str, content: str) -> str:
 
 def room_card(room: sqlite3.Row) -> str:
     room_id = int(room["id"])
+    room_name = html.escape(room["name"])
+    room_image = html.escape(room["image_url"])
+    room_description = html.escape(room["description"])
     return f"""
     <div class='col-md-4'>
       <div class='card h-100 shadow-sm'>
-        <img src='{html.escape(room["image_url"])}' class='card-img-top' alt='{html.escape(room["name"])}' />
+        <a href='/rooms/{room_id}' class='room-link'>
+          <img src='{room_image}' class='card-img-top' alt='{room_name}' />
+        </a>
         <div class='card-body d-flex flex-column'>
-          <h2 class='h5'>{html.escape(room["name"])}</h2>
-          <p>{html.escape(room["description"])}</p>
+          <h2 class='h5'><a href='/rooms/{room_id}' class='room-link'>{room_name}</a></h2>
+          <p>{room_description}</p>
           <p class='small text-muted mb-2'>{room["beds"]} krevat(e) • Deri {room["guests"]} persona</p>
           <p class='fw-bold text-primary'>Nga {room["price_eur"]}€ / natë</p>
-          <a class='btn btn-outline-primary mt-auto' href='/rooms/{room_id}'>Shiko dhomën</a>
+          <div class='mt-auto d-flex gap-2'>
+            <a class='btn btn-outline-primary' href='/rooms/{room_id}'>Shiko dhomën</a>
+            <a class='btn btn-warning' href='/contact?room_id={room_id}'>Rezervo</a>
+          </div>
         </div>
       </div>
     </div>
